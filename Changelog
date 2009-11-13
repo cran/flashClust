@@ -1,0 +1,5 @@
+
+
+2009-11-13: 0.10-1
+
+	. flashClust now checks that the input distance actually contains some data

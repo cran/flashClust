@@ -21,6 +21,9 @@ flashClust <- function(d, method="complete",  members = NULL)
  if (len!=(n*(n-1)/2))
    stop("Distance structure seems invalid.");
 
+ if (n==1 || len==0)
+   stop("The distance structure is empty.");
+
  if (is.null(members)) 
  {
         members <- rep(1, n)
