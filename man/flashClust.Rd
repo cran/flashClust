@@ -1,11 +1,13 @@
 \name{flashClust}
 \alias{flashClust}
+\alias{hclust}
 \title{ Faster alternative to hclust }
 \description{
-  This function implements optimal hierarchical clustering with an interface similar to
+  This function implements optimal hierarchical clustering with the same interface as
 \code{\link{hclust}}. 
 }
 \usage{
+hclust(d, method = "complete", members=NULL)
 flashClust(d, method = "complete", members=NULL)
 }
 \arguments{
@@ -34,6 +36,7 @@ flashClust(d, method = "complete", members=NULL)
   dissimilarities between the clusters are the squared Euclidean
   distances between cluster means.
 
+  \code{flashClust} is a wrapper for compatibility with older code.
 }
 \value{
   Returned value is the same as that of \code{\link{hclust}}: 

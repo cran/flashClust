@@ -3,6 +3,11 @@
 
 flashClust <- function(d, method="complete",  members = NULL)
 {
+  hclust(d, method, members)
+}
+
+hclust <- function(d, method="complete",  members = NULL)
+{
 
 # Hierarchical clustering, on raw input data; we will use Euclidean distance.
 # A range of criteria are supported; also there is a storage-economic option.

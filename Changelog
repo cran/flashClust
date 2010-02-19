@@ -1,4 +1,8 @@
 
+2010-02-19: 1.00  
+
+	. added a wrapper called hclust so a fast version of hclust is used automatically after loading the
+	  package
 
 2009-11-13: 0.10-1
 
