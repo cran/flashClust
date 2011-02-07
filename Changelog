@@ -1,4 +1,10 @@
 
+2011-02-06: 1.00-3
+
+	. Fixed overflow errors when the number of clustered objects is over ~45000. 
+	  The code should now be able to cluster as many as 65000 objects,
+	  given enough memory.
+
 2010-07-19: 1.00-2
 
 	. added a timing example in the help file

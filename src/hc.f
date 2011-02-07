@@ -226,6 +226,13 @@ C
       FUNCTION IOFFSET(N,I,J)
 C  Map row I and column J of upper half diagonal symmetric matrix 
 C  onto vector.
-      IOFFSET=J+(I-1)*N-(I*(I+1))/2
+      IMPLICIT DOUBLE PRECISION (A-H, O-Z)
+
+C  Convert integer I to a double 
+C  This hopefully prevents overflow errors when I^2 is greater than
+C  2^31.
+      XI = DBLE(I)
+      IOFFSET=J+NINT( (XI-1)*N - (XI*(XI+1))/2)
+C      IOFFSET=J+(I-1)*N-(I*(I+1))/2
       RETURN
       END

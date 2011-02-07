@@ -18,13 +18,13 @@ hclust <- function(d, method="complete",  members = NULL)
  method <- pmatch(method, METHODS)
 
  if (is.na(method)) 
-        stop("invalid clustering method")
+        stop("Invalid clustering method")
     if (method == -1) 
-        stop("ambiguous clustering method")
+        stop("Ambiguous clustering method")
  n = attr(d, "Size")
  len = length(d);
  if (len!=(n*(n-1)/2))
-   stop("Distance structure seems invalid.");
+   stop("Distance structure appears invalid.");
 
  if (n==1 || len==0)
    stop("The distance structure is empty.");
@@ -59,9 +59,11 @@ hclust <- function(d, method="complete",  members = NULL)
 # 2nd step: interpret the information that we now have, -- seq. of aggloms., --
 # as merge, height, and order lists.
 
+#PL: not clear what this iclass is supposed to be for.
 
- iclass <- matrix(0.0, n, n)
- storage.mode(iclass) <- "integer"
+ #iclass <- matrix(0.0, n, n)
+ #storage.mode(iclass) <- "integer"
+
  hcass <- .Fortran("hcass2",
           n = as.integer(n),
           ia = as.integer(hcl$ia),
