@@ -18,7 +18,8 @@ C  FLAG              boolean indicator of agglomerable obj./ C
 C                    clusters.                               C
 C                                                            C
 C  F. Murtagh, ESA/ESO/STECF, Garching, February 1986.       C
-C  Modified by Peter Langfelder, 
+C  Modified by Peter Langfelder, implemented bug fix
+C  by Chi Ming Yau
 C                                                            C
 C------------------------------------------------------------C
       SUBROUTINE HC(N,LEN,IOPT,IA,IB,CRIT,MEMBR,NN,DISNN,
@@ -65,13 +66,6 @@ C            rather than distances.)
 C          ENDDO
 C       ENDDO
 
-C Peter Langfelder's addition, hopefully not necessary (not clear how
-C dividing distances by a factor of 2 changes clustering...)
-C      IF (IOPT.EQ.1) THEN
-C        DO I=1,LEN
-C          DISS(I)=DISS(I)/2
-C      ENDIF
-        
 C
 C  Carry out an agglomeration - first create list of NNs
 C
@@ -191,28 +185,68 @@ C
       NN(I2)=JJ
 C
 C  Update list of NNs insofar as this is required.
-C
-      DO I=1,N-1
-         IF (.NOT.FLAG(I)) GOTO 900
-         IF (NN(I).EQ.I2) GOTO 850
-         IF (NN(I).EQ.J2) GOTO 850
-         GOTO 900
-  850    CONTINUE
+C  This part modified by Chi Ming Yau and PL. For methods IOPT=6 and 7
+C  use modified updating of nearest neighbors that is a bit slower but
+C  necessary.
+
+      IF (IOPT.GT.5) THEN
+        DO I=1,N-1
+          IF (.NOT.FLAG(I)) GOTO 900
+          IF (I.EQ.I2) GOTO 850
+          IF (NN(I).EQ.I2) GOTO 850
+          IF (NN(I).EQ.J2) GOTO 850
+C  Compare DISNN(I) with updated DISS between I and I2
+          IF (I2.LT.I) THEN
+                            IND=IOFFSET(N,I2,I)
+                       ELSE
+                            IND=IOFFSET(N,I,I2)
+          ENDIF
+          DMIN=DISS(IND)
+          IF (DMIN.GE.DISNN(I)) GOTO 900
+             DISNN(I)=DMIN
+             NN(I)=I2
+          GOTO 900
+ 850      CONTINUE
 C        (Redetermine NN of I:)
-         DMIN=INF
-         DO J=I+1,N
-            IND=IOFFSET(N,I,J)
-            IF (.NOT.FLAG(J)) GOTO 870
-            IF (I.EQ.J) GOTO 870
-            IF (DISS(IND).GE.DMIN) GOTO 870
-               DMIN=DISS(IND)
-               JJ=J
-  870       CONTINUE
-         ENDDO
-         NN(I)=JJ
-         DISNN(I)=DMIN
-  900    CONTINUE
-      ENDDO
+          DMIN=INF
+          DO J=I+1,N
+             IND=IOFFSET(N,I,J)
+             IF (.NOT.FLAG(J)) GOTO 870
+             IF (I.EQ.J) GOTO 870
+             IF (DISS(IND).GE.DMIN) GOTO 870
+                DMIN=DISS(IND)
+                JJ=J
+ 870         CONTINUE
+          ENDDO
+          NN(I)=JJ
+          DISNN(I)=DMIN
+ 900      CONTINUE
+        ENDDO
+      ELSE  
+C       For methods IOPT<6 use the original fast update.
+        DO I=1,N-1
+           IF (.NOT.FLAG(I)) GOTO 901
+           IF (NN(I).EQ.I2) GOTO 851
+           IF (NN(I).EQ.J2) GOTO 851
+           GOTO 901
+  851      CONTINUE
+C          (Redetermine NN of I:)
+           DMIN=INF
+           DO J=I+1,N
+              IND=IOFFSET(N,I,J)
+              IF (.NOT.FLAG(J)) GOTO 871
+              IF (I.EQ.J) GOTO 871
+              IF (DISS(IND).GE.DMIN) GOTO 871
+                 DMIN=DISS(IND)
+                 JJ=J
+  871         CONTINUE
+           ENDDO
+           NN(I)=JJ
+           DISNN(I)=DMIN
+  901      CONTINUE
+        ENDDO
+      ENDIF
+
 C
 C  Repeat previous steps until N-1 agglomerations carried out.
 C
@@ -231,8 +265,13 @@ C  onto vector.
 C  Convert integer I to a double 
 C  This hopefully prevents overflow errors when I^2 is greater than
 C  2^31.
-      XI = DBLE(I)
-      IOFFSET=J+NINT( (XI-1)*N - (XI*(XI+1))/2)
-C      IOFFSET=J+(I-1)*N-(I*(I+1))/2
+      IF (N.GT.32768) THEN 
+         XI = DBLE(I)
+         IOFFSET=J+NINT( (XI-1)*N - (XI*(XI+1))/2)
+      ELSE
+         IOFFSET=J+(I-1)*N-(I*(I+1))/2
+      ENDIF
       RETURN
       END
+
+

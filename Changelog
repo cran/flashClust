@@ -1,4 +1,12 @@
 
+2011-03-20: 1.01
+
+	. Fixed incorrect clustering with methods "centroid" and "median".
+	  Thanks to Chi Ming Yau and Daniel Müllner for pointing out the error
+	  and suggesting a fix.
+	. Speed now for the most part back up to the level experienced with
+	  1.00-2 but still capable of working with larger data sets. 
+
 2011-02-06: 1.00-3
 
 	. Fixed overflow errors when the number of clustered objects is over ~45000. 
