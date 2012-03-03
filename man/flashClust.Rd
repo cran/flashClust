@@ -76,7 +76,16 @@ flashClust(d, method = "complete", members=NULL)
     attribute).}
 
 }
-\references{ F.Murtagh's software web site, http://astro.u-strasbg.fr/~fmurtagh/mda-sw/splus/ 
+\references{ 
+
+  This implementation is mentioned in 
+
+  Peter Langfelder, Steve Horvath (2012)
+  Fast R Functions for Robust Correlations and Hierarchical Clustering.
+  Journal of Statistical Software, 46(11), 1-17.
+  \url{http://www.jstatsoft.org/v46/i11/}
+
+  F.Murtagh's software web site: http://www.classification-society.org/csna/mda-sw/ , section 6
 
   Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
   \emph{The New S Language}.

@@ -1,4 +1,8 @@
 
+2012-03-02: 1.01-1
+
+	. Added citation
+
 2011-03-20: 1.01
 
 	. Fixed incorrect clustering with methods "centroid" and "median".
