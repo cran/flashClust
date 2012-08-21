@@ -1,7 +1,8 @@
-697b8ca0636bb0131927735161d19f53 *Changelog
-11c18f5ba44caa87ceefcfde895e3c64 *DESCRIPTION
+d047ea58afd696a26c1283983c7672cf *Changelog
+3e1008758ddfbac277cb7bdeef1a24e4 *DESCRIPTION
 bb5920e348331ca7bf4468a4c025d38b *NAMESPACE
-69c6faba6af9f7d314c3d22a9a887051 *R/murtagh.R
+0e93374868d312a7211bbf4902683634 *R/murtagh.R
 799103cabce5323e1efce7634490ca1e *inst/CITATION
 0f8bdc3d7b60180aae70166beb63bebc *man/flashClust.Rd
 e61dcc01d34889d0d9ee2f489e3e7c5b *src/hc.f
+54a2d4ec7d6a4124f69dec1d567eb9b6 *src/hcass2.f

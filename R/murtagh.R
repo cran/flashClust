@@ -54,7 +54,8 @@ hclust <- function(d, method="complete",  members = NULL)
           nn = integer(n),
           disnn = double(n),
           flag = logical(n),
-          diss = as.double(d))
+          diss = as.double(d), 
+          PACKAGE = "flashClust")
 
 # 2nd step: interpret the information that we now have, -- seq. of aggloms., --
 # as merge, height, and order lists.
@@ -70,7 +71,9 @@ hclust <- function(d, method="complete",  members = NULL)
           ib = as.integer(hcl$ib),
           order = integer(n),
           iia = integer(n),
-          iib = integer(n))
+          iib = integer(n), 
+          PACKAGE = "flashClust")
+
  merge <- cbind(hcass$iia[1:n-1],hcass$iib[1:n-1])
 
 

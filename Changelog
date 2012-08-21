@@ -1,4 +1,9 @@
 
+2012-08-21: 1.01-2
+
+	. Added the stats routine hcass2 to the package to avoid calling
+	  undocumented internal function in the base distribution of R.
+
 2012-03-02: 1.01-1
 
 	. Added citation

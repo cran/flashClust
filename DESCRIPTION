@@ -1,6 +1,6 @@
 Package: flashClust
-Version: 1.01-1
-Date: 2012-03-03
+Version: 1.01-2
+Date: 2012-08-21
 Title: Implementation of optimal hierarchical clustering
 Author: code by Fionn Murtagh and R development team, modifications and
         packaging by Peter Langfelder
@@ -9,6 +9,6 @@ Depends: R (>= 2.3.0)
 ZipData: no
 License: GPL (>= 2)
 Description: Fast implementation of hierarchical clustering
-Packaged: 2012-03-03 02:26:41 UTC; plangfelder
+Packaged: 2012-08-21 17:18:30 UTC; plangfelder
 Repository: CRAN
-Date/Publication: 2012-03-03 07:11:23
+Date/Publication: 2012-08-21 18:23:43
