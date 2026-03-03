@@ -83,13 +83,13 @@ flashClust(d, method = "complete", members=NULL)
   Peter Langfelder, Steve Horvath (2012)
   Fast R Functions for Robust Correlations and Hierarchical Clustering.
   Journal of Statistical Software, 46(11), 1-17.
-  \url{http://www.jstatsoft.org/v46/i11/}
+  \url{https://www.jstatsoft.org/v46/i11/}
 
-  F.Murtagh's software web site: http://www.classification-society.org/csna/mda-sw/ , section 6
+  F. Murtagh's software web site: https://www.classification-society.org/csna/mda-sw/ , section 6
 
   Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
   \emph{The New S Language}.
-  Wadsworth \& Brooks/Cole. (S version.)
+  Wadsworth & Brooks/Cole. (S version.)
 
   Everitt, B. (1974).
   \emph{Cluster Analysis}.

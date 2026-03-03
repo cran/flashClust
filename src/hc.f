@@ -20,10 +20,12 @@ C                                                            C
 C  F. Murtagh, ESA/ESO/STECF, Garching, February 1986.       C
 C  Modified by Peter Langfelder, implemented bug fix
 C  by Chi Ming Yau
+C  March 2026: argument FLAG is not passed anymore to prevent
+C  potential fortran/C inconsistencies
 C                                                            C
 C------------------------------------------------------------C
       SUBROUTINE HC(N,LEN,IOPT,IA,IB,CRIT,MEMBR,NN,DISNN,
-     X                FLAG,DISS)
+     X                DISS)
       IMPLICIT DOUBLE PRECISION (A-H, O-Z)
 
       DOUBLE PRECISION MEMBR(N),DISS(LEN)

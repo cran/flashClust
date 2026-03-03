@@ -1,5 +1,5 @@
-# Code by F. Murthagh, http://astro.u-strasbg.fr/~fmurtagh/mda-sw/splus
-# modified by Peter Langfelder to make it compaticle with R's standard hclust
+# Code by F. Murthagh, https://astro.u-strasbg.fr/~fmurtagh/mda-sw/splus
+# modified by Peter Langfelder to make it compatible with R's standard hclust
 
 flashClust <- function(d, method="complete",  members = NULL)
 {
@@ -43,7 +43,7 @@ hclust <- function(d, method="complete",  members = NULL)
 # -- i.e. O(n^3) -- implementations in all commercial statistical packages
 # -- as far as I am aware -- except Clustan.)  
 
- hcl <- .Fortran("hc",
+ hcl <- .Fortran(.F77_hc,
           n = as.integer(n),
           len = as.integer(len),
           method = as.integer(method),
@@ -53,7 +53,6 @@ hclust <- function(d, method="complete",  members = NULL)
           membr = as.double(members),
           nn = integer(n),
           disnn = double(n),
-          flag = logical(n),
           diss = as.double(d), 
           PACKAGE = "flashClust")
 
@@ -65,7 +64,7 @@ hclust <- function(d, method="complete",  members = NULL)
  #iclass <- matrix(0.0, n, n)
  #storage.mode(iclass) <- "integer"
 
- hcass <- .Fortran("hcass2",
+ hcass <- .Fortran(.F77_hcass2,
           n = as.integer(n),
           ia = as.integer(hcl$ia),
           ib = as.integer(hcl$ib),
